@@ -10,8 +10,8 @@ function useCurrencyConvertor(currency){
         .then((currData) => setData(currData))
         .catch((error) => console.log(error))
     }, [currency])
-    console.log("data");
-    console.log(data);
+    // console.log("data");
+    // console.log(data);
     return data
 }
 

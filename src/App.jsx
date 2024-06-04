@@ -16,6 +16,8 @@ function App() {
   const swap = () => {
     setFrom(to)
     setTo(from)
+    setAmount(convertedData)
+    setConvertedData(amount)  
   }
 
   const convert = () => {
@@ -33,7 +35,7 @@ function App() {
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
-              
+                        convert()
                        
                     }}
                 >
@@ -42,16 +44,16 @@ function App() {
                             label="From"
                             amount={amount}
                             currencyOptions={keys}
-                      
-                            onAmountChange={() => convert}
-                            
+                            selectCurrency={from}
+                            onAmountChange={(amt) => setAmount(amt)}
+                            onCurrencyChange={(frVal) => setFrom(frVal)}
                         />
                     </div>
                     <div className="relative w-full h-0.5">
                         <button
                             type="button"
                             className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
-                            onClick={() => convert}
+                            onClick={() => convert()}
                         >
                             swap
                         </button>
@@ -61,9 +63,9 @@ function App() {
                             label="To"
                             amount={convertedData}
                             currencyOptions={keys}
-                            
-                            
-                            isAmountDisable
+                            onCurrencyChange={(toVal) => setTo(toVal)}
+                            selectCurrency={to}
+                            isAmountDisable={true}
                             
                         />
                     </div>
