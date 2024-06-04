@@ -3,6 +3,10 @@ import './App.css'
 import { InputBox } from './components'
 import useCurrencyConvertor from './hooks/currency'
 
+
+// TODO on input box entering value should be replace by initial 0 
+// TODO no negative input value  -- Done
+
 function App() {
 
   const [amount, setAmount] = useState(0)
@@ -45,7 +49,7 @@ function App() {
                             amount={amount}
                             currencyOptions={keys}
                             selectCurrency={from}
-                            onAmountChange={(amt) => setAmount(amt)}
+                            onAmountChange={(amt) => amt>=0?setAmount(amt):null}
                             onCurrencyChange={(frVal) => setFrom(frVal)}
                         />
                     </div>
