@@ -4,15 +4,15 @@ import { InputBox } from './components'
 import useCurrencyConvertor from './hooks/currency'
 
 
-// TODO on input box entering value should be replace by initial 0 
+// TODO on input box entering value should be replace by initial 0 -- Done
 // TODO no negative input value  -- Done
 
 function App() {
 
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(1)
   const [from, setFrom] = useState("usd")
   const [to , setTo] = useState("inr")
-  const [convertedData, setConvertedData] = useState(0)
+  const [convertedData, setConvertedData] = useState(null)
 
   const resData = useCurrencyConvertor(from)
   const keys = Object.keys(resData)
@@ -49,7 +49,11 @@ function App() {
                             amount={amount}
                             currencyOptions={keys}
                             selectCurrency={from}
-                            onAmountChange={(amt) => amt>=0?setAmount(amt):null}
+                            onAmountChange={(amt) => {
+                                if(amt == 0) setAmount(null)
+                                else amt>0?setAmount(amt):null
+                                
+                            }}
                             onCurrencyChange={(frVal) => setFrom(frVal)}
                         />
                     </div>
